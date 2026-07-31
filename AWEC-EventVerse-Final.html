@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AWEC EventVerse – Ashoka Women's Engineering College</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap');
+
+/* ═══════════════ VARIABLES ═══════════════ */
+:root {
+  --ink: #0f0c1a;
+  --ink2: #1a1530;
+  --ink3: #231e38;
+  --gold: #c9a84c;
+  --gold2: #e8c96a;
+  --cream: #faf6ee;
+  --rose: #c2185b;
+  --rose2: #e91e8c;
+  --teal: #00897b;
+  --teal2: #26c6ac;
+  --cobalt: #1565c0;
+  --cobalt2: #42a5f5;
+  --text: #f0ecfc;
+  --muted: #9b93b8;
+  --card: #16122a;
+  --border: rgba(201,168,76,.15);
+  --fh: 'Cormorant Garamond', Georgia, serif;
+  --fb: 'Outfit', sans-serif;
+  --fm: 'JetBrains Mono', monospace;
+}
+
+/* ═══════════════ RESET ═══════════════ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--text);font-family:var(--fb);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+button{font-family:var(--fb);cursor:pointer;border:none;background:none}
+input,select,textarea{font-family:var(--fb)}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:4px}
+
+/* ═══════════════ NAV ═══════════════ */
+.nav {
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  background:rgba(15,12,26,.92);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nav-in {
+  max-width:1300px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2rem;height:64px;
+}
+.logo {cursor:pointer;display:flex;align-items:center;gap:.75rem}
+.logo-icon {
+  width:38px;height:38px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold),var(--rose));
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;flex-shrink:0;
+}
+.logo-text {font-family:var(--fh);font-size:1.3rem;font-weight:700;line-height:1.1}
+.logo-text small {display:block;font-family:var(--fb);font-size:.55rem;font-weight:600;letter-spacing:2px;color:var(--muted)}
+.nav-links {display:flex;gap:.1rem;align-items:center}
+.nav-links a {
+  padding:.42rem .9rem;border-radius:7px;
+  font-size:.8rem;font-weight:600;color:var(--muted);
+  border:1px solid transparent;transition:all .18s;cursor:pointer;letter-spacing:.2px;
+}
+.nav-links a:hover,.nav-links a.on {color:var(--text);background:rgba(201,168,76,.12);border-color:rgba(201,168,76,.2)}
+.nav-links a.on {color:var(--gold)}
+.nav-links .reg-cta {background:linear-gradient(135deg,var(--gold),#a07830);color:var(--ink)!important;font-weight:700;border:none!important}
+.nav-links .reg-cta:hover {transform:translateY(-2px);box-shadow:0 6px 20px rgba(201,168,76,.35)}
+.ham {display:none;flex-direction:column;gap:5px;cursor:pointer;padding:.4rem}
+.ham span {display:block;width:21px;height:2px;background:var(--text);border-radius:2px}
+.mob {
+  display:none;position:fixed;top:64px;left:0;right:0;z-index:998;
+  background:rgba(15,12,26,.97);border-bottom:1px solid var(--border);
+  padding:.75rem 1.5rem 1.2rem;flex-direction:column;gap:.22rem;
+}
+.mob.open{display:flex}
+.mob a {padding:.65rem 1rem;border-radius:9px;font-weight:600;font-size:.88rem;color:var(--muted);cursor:pointer;transition:all .18s}
+.mob a:hover{color:var(--text);background:rgba(201,168,76,.1)}
+
+/* ═══════════════ PAGES ═══════════════ */
+.page{display:none;min-height:100vh;padding-top:64px}
+.page.show{display:block}
+
+/* ═══════════════ BUTTONS ═══════════════ */
+.btn{display:inline-flex;align-items:center;gap:.45rem;padding:.8rem 1.8rem;border-radius:10px;font-size:.86rem;font-weight:700;letter-spacing:.3px;transition:all .22s;cursor:pointer;font-family:var(--fb)}
+.btn-gold{background:linear-gradient(135deg,var(--gold),#a07830);color:var(--ink);box-shadow:0 0 24px rgba(201,168,76,.3)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,168,76,.45)}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid rgba(201,168,76,.3)}
+.btn-ghost:hover{background:rgba(201,168,76,.1);border-color:var(--gold);transform:translateY(-2px)}
+.btn-rose{background:linear-gradient(135deg,var(--rose),var(--rose2));color:#fff}
+.btn-rose:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(194,24,91,.4)}
+.btn-teal{background:linear-gradient(135deg,var(--teal),var(--teal2));color:#fff}
+.btn-teal:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,137,123,.4)}
+.btn-cobalt{background:linear-gradient(135deg,var(--cobalt),var(--cobalt2));color:#fff}
+.btn-cobalt:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(21,101,192,.4)}
+
+/* ═══════════════ PAGE HEADER ═══════════════ */
+.pghd{
+  text-align:center;padding:4.5rem 1.5rem 2.8rem;
+  border-bottom:1px solid var(--border);position:relative;overflow:hidden;
+}
+.pghd-bg{position:absolute;inset:0;pointer-events:none}
+.pghd h1{font-family:var(--fh);font-size:clamp(2rem,5vw,3.2rem);font-weight:700;margin-bottom:.5rem;position:relative}
+.pghd p{color:var(--muted);position:relative;font-size:.92rem}
+.pghd .pill-tag{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:1.5px;padding:.28rem .85rem;border-radius:100px;margin-bottom:.9rem;position:relative}
+
+/* ═══════════════ ═══ HOME PAGE ═══ ═══════════════ */
+
+/* HERO */
+.hero{
+  min-height:calc(100vh - 64px);
+  display:grid;grid-template-columns:1fr 1fr;align-items:center;
+  max-width:1300px;margin:0 auto;padding:4rem 2rem;gap:4rem;
+  position:relative;
+}
+.hero::before{
+  content:'';position:fixed;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 50% at 70% 50%,rgba(201,168,76,.12) 0%,transparent 60%),
+    radial-gradient(ellipse 40% 40% at 10% 70%,rgba(194,24,91,.1) 0%,transparent 55%);
+  z-index:0;
+}
+.hero-left{position:relative;z-index:1}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.28);
+  border-radius:100px;padding:.3rem .95rem .3rem .65rem;
+  font-size:.68rem;font-weight:700;letter-spacing:1.5px;color:var(--gold2);
+  margin-bottom:1.6rem;
+}
+.hero-eyebrow::before{content:'';width:6px;height:6px;background:var(--gold);border-radius:50%;box-shadow:0 0 8px var(--gold);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.7)}}
+.hero h1{font-family:var(--fh);font-size:clamp(2.6rem,5vw,4.2rem);font-weight:700;line-height:1.06;letter-spacing:-.2px;margin-bottom:1.2rem}
+.hero h1 em{font-style:italic;background:linear-gradient(130deg,var(--gold),var(--rose2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{font-size:1rem;color:var(--muted);line-height:1.72;margin-bottom:2rem;max-width:440px}
+.hero-btns{display:flex;gap:.8rem;flex-wrap:wrap}
+.hero-stats{display:flex;gap:2rem;margin-top:2.4rem;padding-top:2rem;border-top:1px solid var(--border)}
+.hs{text-align:center}
+.hs-n{font-family:var(--fh);font-size:1.9rem;font-weight:700;background:linear-gradient(135deg,var(--gold),var(--rose2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.hs-l{font-size:.68rem;font-weight:700;letter-spacing:1.1px;color:var(--muted);margin-top:.2rem}
+
+/* COLLEGE IMAGE CARD */
+.hero-right{position:relative;z-index:1}
+.clg-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;overflow:hidden;
+  box-shadow:0 20px 60px rgba(0,0,0,.5);
+  position:relative;
+}
+.clg-img{
+  width:100%;height:300px;
+  background:linear-gradient(135deg,#1a1030 0%,#0d1a2e 50%,#1a0d20 100%);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.clg-img-inner{
+  width:100%;height:100%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 40%,rgba(201,168,76,.18),transparent 65%),
+    linear-gradient(160deg,#0a0818,#1a1535);
+  position:relative;
+}
+.clg-building{font-size:5rem;margin-bottom:.5rem;filter:drop-shadow(0 0 30px rgba(201,168,76,.4))}
+.clg-name-big{
+  font-family:var(--fh);font-size:1.1rem;font-weight:700;
+  color:var(--gold2);text-align:center;letter-spacing:.5px;
+  text-shadow:0 0 30px rgba(201,168,76,.5);
+}
+.clg-name-small{font-size:.65rem;letter-spacing:2px;color:var(--muted);margin-top:.2rem;font-weight:600}
+.clg-badge-row{position:absolute;bottom:0;left:0;right:0;display:flex;gap:.5rem;padding:.9rem 1.1rem;background:linear-gradient(to top,rgba(0,0,0,.8),transparent)}
+.cbadge{font-size:.62rem;font-weight:700;letter-spacing:1px;padding:.22rem .7rem;border-radius:100px;background:rgba(201,168,76,.2);border:1px solid rgba(201,168,76,.3);color:var(--gold2)}
+.clg-info{padding:1.2rem 1.4rem}
+.clg-info h3{font-family:var(--fh);font-size:1.1rem;font-weight:700;margin-bottom:.3rem}
+.clg-info p{font-size:.78rem;color:var(--muted);line-height:1.6}
+
+/* QUICK NAV TILES */
+.quick-nav{max-width:1300px;margin:0 auto;padding:0 2rem 4rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.qn{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:18px;padding:1.8rem;cursor:pointer;
+  transition:all .28s;position:relative;overflow:hidden;
+  display:flex;flex-direction:column;align-items:flex-start;gap:.6rem;
+}
+.qn::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .28s;pointer-events:none}
+.qn:hover{transform:translateY(-6px)}
+.qn-c:hover{border-color:rgba(194,24,91,.45);box-shadow:0 8px 36px rgba(194,24,91,.2)}
+.qn-c::before{background:linear-gradient(135deg,rgba(194,24,91,.08),transparent)}
+.qn-c:hover::before{opacity:1}
+.qn-t:hover{border-color:rgba(0,137,123,.45);box-shadow:0 8px 36px rgba(0,137,123,.2)}
+.qn-t::before{background:linear-gradient(135deg,rgba(0,137,123,.08),transparent)}
+.qn-t:hover::before{opacity:1}
+.qn-s:hover{border-color:rgba(21,101,192,.45);box-shadow:0 8px 36px rgba(21,101,192,.2)}
+.qn-s::before{background:linear-gradient(135deg,rgba(21,101,192,.08),transparent)}
+.qn-s:hover::before{opacity:1}
+.qn-icon{font-size:2.2rem}
+.qn h3{font-family:var(--fh);font-size:1.25rem;font-weight:700}
+.qn p{font-size:.78rem;color:var(--muted);line-height:1.55}
+.qn-arrow{margin-top:auto;font-size:.8rem;font-weight:700;letter-spacing:.5px;display:flex;align-items:center;gap:.3rem}
+.qn-c .qn-arrow{color:var(--rose)}
+.qn-t .qn-arrow{color:var(--teal2)}
+.qn-s .qn-arrow{color:var(--cobalt2)}
+
+/* COUNTDOWN */
+.cdb{
+  max-width:1300px;margin:0 auto;padding:0 2rem 4rem;
+}
+.cdb-inner{
+  background:linear-gradient(135deg,rgba(201,168,76,.1),rgba(194,24,91,.07));
+  border:1px solid rgba(201,168,76,.2);border-radius:20px;
+  padding:2.2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.6rem;position:relative;overflow:hidden;
+}
+.cdb-inner::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 30px,rgba(201,168,76,.025) 30px,rgba(201,168,76,.025) 31px);pointer-events:none}
+.cdl h2{font-family:var(--fh);font-size:1.6rem;font-weight:700;margin-bottom:.28rem}
+.evname{color:var(--gold2);font-weight:600}
+.evdate{color:var(--muted);font-size:.8rem;margin-top:.15rem}
+.cdu{display:flex;gap:.75rem}
+.cdu-u{text-align:center;background:rgba(0,0,0,.3);border:1px solid var(--border);border-radius:10px;padding:.6rem .95rem;min-width:60px}
+.cdnum{font-family:var(--fm);font-size:1.75rem;font-weight:700;color:var(--gold2);display:block;line-height:1}
+.cdlbl{font-size:.58rem;color:var(--muted);letter-spacing:1.3px;font-weight:700;margin-top:.15rem}
+
+/* ANNOUNCEMENTS */
+.anlist{display:flex;flex-direction:column;gap:.7rem}
+.an{display:flex;align-items:flex-start;gap:.85rem;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.9rem 1.15rem;transition:border-color .18s}
+.an:hover{border-color:rgba(201,168,76,.3)}
+.adot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:.4rem;box-shadow:0 0 7px currentColor}
+.dg{color:var(--gold);background:var(--gold)} .dr{color:var(--rose);background:var(--rose)}
+.abody h4{font-size:.85rem;font-weight:700;margin-bottom:.15rem}
+.abody p{font-size:.75rem;color:var(--muted);line-height:1.5}
+.adt{font-family:var(--fm);font-size:.64rem;color:var(--muted);margin-left:auto;flex-shrink:0}
+
+/* SECTION */
+.sec{max-width:1300px;margin:0 auto;padding:3rem 2rem}
+.sec+.sec{padding-top:0}
+.sec-hd{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:2.2rem;flex-wrap:wrap;gap:.8rem}
+.sec-t{font-family:var(--fh);font-size:2.1rem;font-weight:700}
+.sec-s{color:var(--muted);font-size:.8rem;margin-top:.2rem}
+.see-all{font-size:.8rem;font-weight:700;cursor:pointer;transition:opacity .18s}
+.see-all:hover{opacity:.7}
+
+/* ═══════════════ CULTURAL PAGE ═══════════════ */
+.cult-hero{
+  background:linear-gradient(160deg,rgba(194,24,91,.18) 0%,rgba(15,12,26,0) 60%);
+  border-bottom:1px solid rgba(194,24,91,.18);
+}
+.cult-hero .pghd-bg{background:radial-gradient(ellipse 70% 80% at 50% 0%,rgba(194,24,91,.18),transparent 65%)}
+.cult-t{color:var(--rose2)!important}
+
+/* GALLERY GRID */
+.gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.1rem}
+.gi{
+  border-radius:16px;aspect-ratio:4/3;position:relative;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:3rem;border:1px solid var(--border);
+  transition:all .28s;overflow:hidden;
+}
+.gi:hover{transform:scale(1.02);border-color:rgba(194,24,91,.4)}
+.gov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,transparent 52%);opacity:0;transition:opacity .28s;display:flex;flex-direction:column;justify-content:flex-end;padding:1.1rem}
+.gi:hover .gov{opacity:1}
+.gov h4{font-size:.86rem;font-weight:700}
+.gov p{font-size:.7rem;color:var(--muted);margin-top:.1rem}
+
+/* EVENT LIST */
+.ev-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.3rem}
+.ecard{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:18px;overflow:hidden;transition:all .28s;
+}
+.ecard:hover{transform:translateY(-5px)}
+.ecard-banner{
+  height:130px;display:flex;align-items:center;justify-content:center;
+  font-size:3rem;position:relative;
+}
+.ecard-banner::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.12)}
+.ecard-body{padding:1.1rem}
+.etag{display:inline-block;font-size:.63rem;font-weight:700;letter-spacing:1.1px;padding:.22rem .7rem;border-radius:100px;margin-bottom:.65rem}
+.ecard h3{font-size:.98rem;font-weight:700;margin-bottom:.4rem;line-height:1.35}
+.emeta span{display:flex;align-items:center;gap:.35rem;font-size:.74rem;color:var(--muted);margin-bottom:.2rem}
+.edesc{font-size:.74rem;color:var(--muted);margin:.5rem 0 .9rem;line-height:1.55}
+.c-tag{background:rgba(194,24,91,.16);color:#f48fb1;border:1px solid rgba(194,24,91,.28)}
+.t-tag{background:rgba(0,137,123,.14);color:var(--teal2);border:1px solid rgba(0,137,123,.26)}
+.s-tag{background:rgba(21,101,192,.14);color:var(--cobalt2);border:1px solid rgba(21,101,192,.26)}
+
+/* GUESTS SECTION */
+.guests-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1.1rem}
+.gcard{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.2rem;text-align:center;transition:all .28s}
+.gcard:hover{transform:translateY(-4px);border-color:rgba(201,168,76,.3)}
+.gcard-av{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--rose));display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin:0 auto .8rem}
+.gcard h4{font-size:.88rem;font-weight:700;margin-bottom:.2rem}
+.gcard p{font-size:.72rem;color:var(--muted)}
+
+/* ═══════════════ TECHNICAL & COMMUNICATION CARDS ═══════════════ */
+.tech-hero .pghd-bg{background:radial-gradient(ellipse 70% 80% at 50% 0%,rgba(0,137,123,.18),transparent 65%)}
+.comm-hero .pghd-bg{background:radial-gradient(ellipse 70% 80% at 50% 0%,rgba(21,101,192,.18),transparent 65%)}
+.tech-t{color:var(--teal2)!important}
+.comm-t{color:var(--cobalt2)!important}
+
+/* REGISTER BTN on tech/comm cards */
+.regbtn{
+  width:100%;padding:.58rem;border-radius:8px;font-size:.78rem;font-weight:700;
+  letter-spacing:.35px;transition:all .2s;cursor:pointer;font-family:var(--fb);color:#fff;
+  margin-top:.3rem;
+}
+
+/* ═══════════════ REGISTRATION PAGE ═══════════════ */
+.reg-wrap{max-width:740px;margin:0 auto;padding:2.8rem 1.5rem 5rem}
+.reg-wrap h1{font-family:var(--fh);font-size:2.2rem;font-weight:700;margin-bottom:.38rem}
+.reg-wrap>p{color:var(--muted);margin-bottom:2rem}
+.fcard{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:2.2rem;position:relative;overflow:hidden}
+.fcard::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(201,168,76,.12),transparent 68%);pointer-events:none}
+.fg{margin-bottom:1.25rem}
+.fg label{display:block;font-size:.7rem;font-weight:700;letter-spacing:.6px;color:var(--muted);margin-bottom:.42rem}
+.fg input,.fg select{
+  width:100%;background:rgba(255,255,255,.04);
+  border:1px solid rgba(201,168,76,.15);border-radius:9px;
+  padding:.76rem .95rem;color:var(--text);font-family:var(--fb);font-size:.86rem;
+  outline:none;transition:border-color .18s,box-shadow .18s;
+}
+.fg input:focus,.fg select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,.12)}
+.fg select option{background:#1a1530}
+.r2{display:grid;grid-template-columns:1fr 1fr;gap:.95rem}
+.r3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.95rem}
+.subbtn{
+  width:100%;background:linear-gradient(135deg,var(--gold),#a07830);
+  color:var(--ink);padding:.95rem;border-radius:11px;
+  font-size:.9rem;font-weight:800;letter-spacing:.3px;
+  margin-top:.5rem;transition:all .28s;cursor:pointer;font-family:var(--fb);
+}
+.subbtn:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(201,168,76,.38)}
+
+/* SUCCESS / CERT */
+.sbox{display:none;text-align:center;padding:2.5rem 1.5rem}
+.sicon{font-size:3.5rem;margin-bottom:.8rem;display:block;animation:pop .5s ease}
+@keyframes pop{0%{transform:scale(0)}65%{transform:scale(1.18)}100%{transform:scale(1)}}
+.sbox h2{font-family:var(--fh);font-size:1.9rem;font-weight:700;margin-bottom:.38rem;background:linear-gradient(135deg,var(--gold),var(--rose2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sbox>p{color:var(--muted);margin-bottom:1.3rem}
+.qrcard{background:var(--ink2);border:1px solid var(--border);border-radius:16px;padding:1.4rem;max-width:265px;margin:0 auto 1.3rem}
+.qrbox{width:140px;height:140px;margin:0 auto .85rem;background:repeating-conic-gradient(var(--card) 0% 25%,var(--ink2) 0% 50%) 0 0/10px 10px;border-radius:7px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:.55rem;color:var(--muted)}
+.passinfo{font-family:var(--fm);font-size:.68rem;color:var(--muted);line-height:1.85;text-align:left}
+
+/* CERT SECTION */
+.cert-section{margin-top:3rem}
+.cert-section h2{font-family:var(--fh);font-size:1.8rem;font-weight:700;margin-bottom:.4rem}
+.cert-section>p{color:var(--muted);font-size:.85rem;margin-bottom:1.5rem}
+.cert-card{
+  border:3px solid var(--gold);border-radius:16px;
+  padding:2.2rem;text-align:center;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,rgba(201,168,76,.06),rgba(194,24,91,.04));
+  margin-bottom:1.5rem;
+}
+.cert-card::before,.cert-card::after{
+  content:'';position:absolute;width:80px;height:80px;border-radius:50%;
+  border:2px solid rgba(201,168,76,.2);
+}
+.cert-card::before{top:-30px;left:-30px}
+.cert-card::after{bottom:-30px;right:-30px}
+.cert-seal{font-size:2.5rem;margin-bottom:.8rem}
+.cert-card h3{font-family:var(--fh);font-size:1.1rem;font-weight:400;color:var(--muted);margin-bottom:.3rem}
+.cert-name{font-family:var(--fh);font-size:2rem;font-weight:700;font-style:italic;background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.5rem}
+.cert-body{font-size:.85rem;color:var(--muted);line-height:1.7;margin-bottom:.8rem}
+.cert-event{font-family:var(--fh);font-size:1.2rem;font-weight:700;color:var(--gold2);margin:.3rem 0}
+.cert-line{height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:1rem 0}
+.cert-footer{display:flex;justify-content:space-between;font-size:.72rem;color:var(--muted);font-family:var(--fm)}
+.cert-type-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+.ctype{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.2rem;cursor:pointer;transition:all .22s;text-align:center}
+.ctype:hover{border-color:rgba(201,168,76,.4);transform:translateY(-3px)}
+.ctype.sel{border-color:var(--gold);background:rgba(201,168,76,.08)}
+.ctype h4{font-size:.9rem;font-weight:700;margin-top:.5rem}
+.ctype p{font-size:.75rem;color:var(--muted);margin-top:.2rem}
+.cert-form{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.8rem;margin-bottom:1.5rem}
+
+/* ═══════════════ FOOTER ═══════════════ */
+footer{background:var(--ink2);border-top:1px solid var(--border);padding:3rem 1.5rem;text-align:center}
+.flogo{font-family:var(--fh);font-size:1.45rem;font-weight:700;background:linear-gradient(135deg,var(--gold),var(--rose2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.35rem}
+footer p{color:var(--muted);font-size:.78rem;line-height:1.75}
+.flinks{display:flex;justify-content:center;gap:1.2rem;flex-wrap:wrap;margin-top:1.2rem}
+.flinks a{color:var(--muted);font-size:.78rem;font-weight:600;cursor:pointer;transition:color .18s}
+.flinks a:hover{color:var(--gold)}
+.fcopy{margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid var(--border);font-size:.7rem;color:var(--muted)}
+
+/* RESPONSIVE */
+@media(max-width:1024px){.hero{grid-template-columns:1fr;gap:2.5rem}.hero-right{display:none}.quick-nav{grid-template-columns:1fr}}
+@media(max-width:768px){.nav-links{display:none}.ham{display:flex}.hero{padding:2.5rem 1.5rem}.quick-nav{grid-template-columns:1fr 1fr}.r2,.r3{grid-template-columns:1fr}.cert-type-row{grid-template-columns:1fr}}
+@media(max-width:480px){.quick-nav{grid-template-columns:1fr}.cdu{flex-wrap:wrap}.hero h1{font-size:2.2rem}}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav class="nav">
+  <div class="nav-in">
+    <div class="logo" onclick="go('home')">
+      <div class="logo-icon">🏛</div>
+      <div class="logo-text">AWEC EventVerse <small>KURNOOL, ANDHRA PRADESH</small></div>
+    </div>
+    <div class="nav-links">
+      <a onclick="go('home')" id="nl-home" class="on">Home</a>
+      <a onclick="go('cultural')" id="nl-cultural">🎭 Cultural</a>
+      <a onclick="go('technical')" id="nl-technical">💻 Technical</a>
+      <a onclick="go('communication')" id="nl-communication">🎤 Communication</a>
+      <a onclick="go('register')" id="nl-register" class="reg-cta">📝 Registration</a>
+      <a onclick="go('certificate')" id="nl-certificate">🏆 Certificates</a>
+    </div>
+    <div class="ham" onclick="document.getElementById('mob').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+<div class="mob" id="mob">
+  <a onclick="go('home');closeMob()">🏠 Home</a>
+  <a onclick="go('cultural');closeMob()">🎭 Cultural Events</a>
+  <a onclick="go('technical');closeMob()">💻 Technical Events</a>
+  <a onclick="go('communication');closeMob()">🎤 Communication Events</a>
+  <a onclick="go('register');closeMob()">📝 Registration</a>
+  <a onclick="go('certificate');closeMob()">🏆 Certificates</a>
+</div>
+
+<!-- ════════════════════════════════
+     HOME PAGE
+════════════════════════════════ -->
+<div class="page show" id="page-home">
+
+  <!-- HERO -->
+  <div style="background:linear-gradient(180deg,rgba(201,168,76,.07) 0%,transparent 60%)">
+    <section class="hero">
+      <div class="hero-left">
+        <div class="hero-eyebrow">✦ ESTABLISHED 2008 · NAAC ACCREDITED</div>
+        <h1>
+          Ashoka Women's<br>
+          Engineering<br>
+          <em>College, Kurnool</em>
+        </h1>
+        <p class="hero-sub">
+          Welcome to <strong>AWEC EventVerse</strong> — the official portal for all cultural, technical, and communication events. Discover events, register, collect certificates, and celebrate together.
+        </p>
+        <div class="hero-btns">
+          <button class="btn btn-gold" onclick="go('cultural')">Explore Events</button>
+          <button class="btn btn-ghost" onclick="go('register')">Register Now</button>
+        </div>
+        <div class="hero-stats">
+          <div class="hs"><div class="hs-n">42+</div><div class="hs-l">EVENTS/YEAR</div></div>
+          <div class="hs"><div class="hs-n">1200+</div><div class="hs-l">STUDENTS</div></div>
+          <div class="hs"><div class="hs-n">5</div><div class="hs-l">BRANCHES</div></div>
+          <div class="hs"><div class="hs-n">100%</div><div class="hs-l">GIRLS COLLEGE</div></div>
+        </div>
+      </div>
+
+      <!-- COLLEGE CARD -->
+      <div class="hero-right">
+        <div class="clg-card">
+          <div class="clg-img">
+            <div class="clg-img-inner">
+              <div class="clg-building">🏛️</div>
+              <div class="clg-name-big">Ashoka Women's Engineering College</div>
+              <div class="clg-name-small">KURNOOL · ANDHRA PRADESH · EST. 2008</div>
+              <div class="clg-badge-row">
+                <span class="cbadge">JNTUA Affiliated</span>
+                <span class="cbadge">NAAC Accredited</span>
+                <span class="cbadge">AICTE Approved</span>
+              </div>
+            </div>
+          </div>
+          <div class="clg-info">
+            <h3>🎓 Ashoka Women's Engineering College</h3>
+            <p>📍 Kurnool, Andhra Pradesh 518002<br>
+            📞 +91 85001 12345 &nbsp;|&nbsp; ✉ info@ashokawec.ac.in<br>
+            🌐 www.ashokawec.ac.in<br>
+            Departments: CSE · CSE-AI · ECE · EEE · Civil Engineering</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- QUICK NAV TILES -->
+  <div class="quick-nav">
+    <div class="qn qn-c" onclick="go('cultural')">
+      <div class="qn-icon">🎭</div>
+      <h3>Cultural Events</h3>
+      <p>SAACHI, Sankaranthi, Dandiya Night, Holi, Christmas & more. Gallery of past celebrations & invited guests.</p>
+      <div class="qn-arrow" style="color:var(--rose)">Explore Cultural →</div>
+    </div>
+    <div class="qn qn-t" onclick="go('technical')">
+      <div class="qn-icon">💻</div>
+      <h3>Technical Events</h3>
+      <p>E-Cube Hackathon, NEXORA, CodeSprint, Project Expo, Web Design, AI & ML Workshops and more.</p>
+      <div class="qn-arrow" style="color:var(--teal2)">Explore Technical →</div>
+    </div>
+    <div class="qn qn-s" onclick="go('communication')">
+      <div class="qn-icon">🎤</div>
+      <h3>Communication Skills</h3>
+      <p>Public Speaking, Debate, Group Discussions, Interview Skills, Storytelling & Professional Writing.</p>
+      <div class="qn-arrow" style="color:var(--cobalt2)">Explore Communication →</div>
+    </div>
+  </div>
+
+  <!-- COUNTDOWN -->
+  <div class="cdb">
+    <div class="cdb-inner">
+      <div class="cdl">
+        <h2>⏳ Next Event Countdown</h2>
+        <div class="evname">SAACHI 2026 – Cultural Extravaganza</div>
+        <div class="evdate">📅 March 15, 2027 &nbsp;·&nbsp; 📍 Main Auditorium, AWEC</div>
+      </div>
+      <div class="cdu">
+        <div class="cdu-u"><span class="cdnum" id="cd-d">00</span><div class="cdlbl">DAYS</div></div>
+        <div class="cdu-u"><span class="cdnum" id="cd-h">00</span><div class="cdlbl">HRS</div></div>
+        <div class="cdu-u"><span class="cdnum" id="cd-m">00</span><div class="cdlbl">MIN</div></div>
+        <div class="cdu-u"><span class="cdnum" id="cd-s">00</span><div class="cdlbl">SEC</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ANNOUNCEMENTS -->
+  <div class="sec">
+    <div class="sec-hd">
+      <div><div class="sec-t">📢 Latest Announcements</div><div class="sec-s">Important updates from the Events Committee</div></div>
+    </div>
+    <div class="anlist" id="ann-home">
+      <div class="an"><div class="adot dr"></div><div class="abody"><h4>SAACHI 2026 – Registrations Open for Technical & Communication Events</h4><p>Cultural events have open entry. Register for Technical and Communication competitions now. Limited spots!</p></div><div class="adt">APR 20</div></div>
+      <div class="an"><div class="adot dg"></div><div class="abody"><h4>E-Cube Hackathon – Team Formation Begins</h4><p>Form teams of 2–4 members. All branches eligible. Prize pool ₹50,000+. Register before May 1.</p></div><div class="adt">APR 18</div></div>
+      <div class="an"><div class="adot dg"></div><div class="abody"><h4>Certificates Now Available Online – Jan–March Events</h4><p>Participation and winning certificates for January to March events can now be downloaded from the Certificates section.</p></div><div class="adt">APR 15</div></div>
+      <div class="an"><div class="adot dg"></div><div class="abody"><h4>Convocation Ceremony – Dress Code & Reporting Time</h4><p>Final year students: white saree (formal). Report at the Convention Hall by 9:00 AM sharp.</p></div><div class="adt">APR 12</div></div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="flogo">Ashoka Women's Engineering College</div>
+    <p>Kurnool, Andhra Pradesh 518002 &nbsp;|&nbsp; +91 85001 12345 &nbsp;|&nbsp; info@ashokawec.ac.in</p>
+    <p>Affiliated to JNTUA · NAAC Accredited · AICTE Approved</p>
+    <div class="flinks">
+      <a onclick="go('home')">Home</a>
+      <a onclick="go('cultural')">Cultural</a>
+      <a onclick="go('technical')">Technical</a>
+      <a onclick="go('communication')">Communication</a>
+      <a onclick="go('register')">Register</a>
+      <a onclick="go('certificate')">Certificates</a>
+    </div>
+    <div class="fcopy">© 2026 Ashoka Women's Engineering College · EventVerse Portal · Designed by AWEC Tech Club 💛</div>
+  </footer>
+</div>
+
+<!-- ════════════════════════════════
+     CULTURAL PAGE
+════════════════════════════════ -->
+<div class="page" id="page-cultural">
+  <div class="pghd cult-hero">
+    <div class="pghd-bg"></div>
+    <span class="pill-tag" style="background:rgba(194,24,91,.18);color:#f48fb1;border:1px solid rgba(194,24,91,.3)">🎭 CULTURAL EVENTS</span>
+    <h1>Cultural <span class="cult-t">Celebrations</span></h1>
+    <p>Festivals, performances & traditions — open to all students. No registration needed for cultural events.</p>
+  </div>
+
+  <!-- Events list -->
+  <div class="sec">
+    <div class="sec-hd"><div><div class="sec-t">2026 Cultural <span class="cult-t">Calendar</span></div><div class="sec-s">All cultural events are free entry — just show up and celebrate!</div></div></div>
+    <div class="ev-list" id="cult-events"></div>
+  </div>
+
+  <!-- Previous Year Gallery -->
+  <div class="sec" style="padding-top:0">
+    <div class="sec-hd"><div><div class="sec-t">📸 Previous Year <span class="cult-t">Highlights</span></div><div class="sec-s">Memories from SAACHI 2025, Sankaranthi, Dandiya Night & more</div></div></div>
+    <div class="gal-grid" id="cult-gallery"></div>
+  </div>
+
+  <!-- Guests Invited -->
+  <div class="sec" style="padding-top:0">
+    <div class="sec-hd"><div><div class="sec-t">🌟 Distinguished <span class="cult-t">Guests</span></div><div class="sec-s">Eminent personalities who graced our cultural events</div></div></div>
+    <div class="guests-grid" id="cult-guests"></div>
+  </div>
+
+  <footer>
+    <div class="flogo">Ashoka Women's Engineering College</div>
+    <p>Kurnool, Andhra Pradesh &nbsp;|&nbsp; Cultural events are free entry for all AWEC students</p>
+    <div class="fcopy">© 2026 AWEC EventVerse · 💛</div>
+  </footer>
+</div>
+
+<!-- ════════════════════════════════
+     TECHNICAL PAGE
+════════════════════════════════ -->
+<div class="page" id="page-technical">
+  <div class="pghd tech-hero">
+    <div class="pghd-bg"></div>
+    <span class="pill-tag" style="background:rgba(0,137,123,.16);color:var(--teal2);border:1px solid rgba(0,137,123,.28)">💻 TECHNICAL EVENTS</span>
+    <h1>Technical <span class="tech-t">Events</span></h1>
+    <p>Hackathons, workshops, paper presentations & coding competitions. Registration required.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-hd"><div><div class="sec-t">2026 Technical <span class="tech-t">Events</span></div><div class="sec-s">Register to secure your spot — limited seats per event</div></div></div>
+    <div class="ev-list" id="tech-events"></div>
+  </div>
+
+  <footer>
+    <div class="flogo">Ashoka Women's Engineering College</div>
+    <p>Technical Events · Registration required · Certificates awarded to all participants</p>
+    <div class="fcopy">© 2026 AWEC EventVerse · 💛</div>
+  </footer>
+</div>
+
+<!-- ════════════════════════════════
+     COMMUNICATION PAGE
+════════════════════════════════ -->
+<div class="page" id="page-communication">
+  <div class="pghd comm-hero">
+    <div class="pghd-bg"></div>
+    <span class="pill-tag" style="background:rgba(21,101,192,.16);color:var(--cobalt2);border:1px solid rgba(21,101,192,.28)">🎤 COMMUNICATION EVENTS</span>
+    <h1>Communication <span class="comm-t">Skills</span></h1>
+    <p>Debates, presentations, public speaking & professional writing. Registration required.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-hd"><div><div class="sec-t">2026 Communication <span class="comm-t">Events</span></div><div class="sec-s">Sharpen your voice — register to participate</div></div></div>
+    <div class="ev-list" id="comm-events"></div>
+  </div>
+
+  <footer>
+    <div class="flogo">Ashoka Women's Engineering College</div>
+    <p>Communication Events · Registration required · Certificates awarded to all participants</p>
+    <div class="fcopy">© 2026 AWEC EventVerse · 💛</div>
+  </footer>
+</div>
+
+<!-- ════════════════════════════════
+     REGISTRATION PAGE
+════════════════════════════════ -->
+<div class="page" id="page-register">
+  <div class="pghd" style="background:linear-gradient(180deg,rgba(201,168,76,.1) 0%,transparent 100%);border-bottom:1px solid rgba(201,168,76,.15)">
+    <div class="pghd-bg" style="background:radial-gradient(ellipse 70% 80% at 50% 0%,rgba(201,168,76,.14),transparent 65%)"></div>
+    <span class="pill-tag" style="background:rgba(201,168,76,.14);color:var(--gold2);border:1px solid rgba(201,168,76,.28)">📝 STUDENT REGISTRATION</span>
+    <h1>Event <span style="background:linear-gradient(135deg,var(--gold),var(--rose2));-webkit-background-clip:text;-webkit-text-fill-color:transparent">Registration</span></h1>
+    <p>For Technical & Communication events only. Cultural events are open entry — no registration needed.</p>
+  </div>
+
+  <div class="reg-wrap">
+    <div class="fcard" id="reg-form-card">
+      <h2 style="font-family:var(--fh);font-size:1.5rem;font-weight:700;margin-bottom:1.5rem">Student Details</h2>
+
+      <!-- Row 1: Name + Roll No -->
+      <div class="r2">
+        <div class="fg"><label>STUDENT NAME *</label><input id="rg-name" type="text" placeholder="Full name as per college ID"></div>
+        <div class="fg"><label>ROLL NUMBER *</label><input id="rg-roll" type="text" placeholder="e.g. 22A91A0501"></div>
+      </div>
+
+      <!-- Row 2: Branch + Section -->
+      <div class="r2">
+        <div class="fg">
+          <label>BRANCH *</label>
+          <select id="rg-branch">
+            <option value="">Select Branch</option>
+            <option value="CSE">CSE – Computer Science</option>
+            <option value="CSE-AI">CSE-AI – AI & Machine Learning</option>
+            <option value="ECE">ECE – Electronics & Communication</option>
+            <option value="EEE">EEE – Electrical & Electronics</option>
+            <option value="Civil">Civil Engineering</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>SECTION *</label>
+          <select id="rg-section">
+            <option value="">Select Section</option>
+            <option>A</option><option>B</option><option>C</option><option>D</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Row 3: Year + Phone -->
+      <div class="r2">
+        <div class="fg">
+          <label>YEAR *</label>
+          <select id="rg-year">
+            <option value="">Select Year</option>
+            <option>1st Year</option><option>2nd Year</option><option>3rd Year</option><option>4th Year</option>
+          </select>
+        </div>
+        <div class="fg"><label>PHONE NUMBER *</label><input id="rg-phone" type="tel" placeholder="+91 98765 43210"></div>
+      </div>
+
+      <!-- Email -->
+      <div class="fg"><label>EMAIL ADDRESS *</label><input id="rg-email" type="email" placeholder="your.rollno@ashokawec.ac.in"></div>
+
+      <!-- Event selection -->
+      <div class="fg">
+        <label>SELECT EVENT TYPE *</label>
+        <select id="rg-etype" onchange="updateEventList()">
+          <option value="">Choose Category</option>
+          <option value="technical">💻 Technical Event</option>
+          <option value="communication">🎤 Communication Skills Event</option>
+        </select>
+      </div>
+      <div class="fg" id="ev-select-wrap" style="display:none">
+        <label>SELECT EVENT *</label>
+        <select id="rg-event">
+          <option value="">Select Event</option>
+        </select>
+      </div>
+
+      <button class="subbtn" onclick="submitReg()">📋 Submit Registration</button>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="sbox" id="reg-success">
+      <span class="sicon">🎉</span>
+      <h2>Registration Confirmed!</h2>
+      <p>Your registration has been recorded. Show this pass at the event venue.</p>
+      <div class="qrcard">
+        <div class="qrbox">ENTRY PASS</div>
+        <div class="passinfo" id="pass-info"></div>
+      </div>
+      <p style="font-size:.8rem;color:var(--muted);margin-bottom:1.2rem">
+        📌 Note: Cultural events require no registration — just attend!<br>
+        🏆 Participation certificates will be available after the event.
+      </p>
+      <div style="display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap">
+        <button class="btn btn-gold" onclick="resetReg()">Register for Another Event</button>
+        <button class="btn btn-ghost" onclick="go('certificate')">Get Certificate</button>
+      </div>
+    </div>
+
+    <!-- REGISTRATION TABLE (Admin view) -->
+    <div class="cert-section" id="reg-table-section">
+      <h2>All Registrations</h2>
+      <p>All submitted registrations appear below.</p>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;overflow-x:auto;margin-top:1.2rem">
+        <table style="width:100%;border-collapse:collapse;min-width:700px">
+          <thead>
+            <tr style="background:rgba(255,255,255,.03)">
+              <th style="padding:.75rem 1rem;text-align:left;font-size:.68rem;letter-spacing:.9px;color:var(--muted);font-weight:700;border-bottom:1px solid var(--border)">#</th>
+              <th style="padding:.75rem 1rem;text-align:left;font-size:.68rem;letter-spacing:.9px;color:var(--muted);font-weight:700;border-bottom:1px solid var(--border)">NAME</th>
+              <th style="padding:.75rem 1rem;text-align:left;font-size:.68rem;letter-spacing:.9px;color:var(--muted);font-weight:700;border-bottom:1px solid var(--border)">ROLL NO</th>
+              <th style="padding:.75rem 1rem;text-align:left;font-size:.68rem;letter-spacing:.9px;color:var(--muted);font-weight:700;border-bottom:1px solid var(--border)">BRANCH</th>
+              <th style="padding:.75rem 1rem;text-align:left;font-size:.68rem;letter-spacing:.9px;color:var(--muted);font-weight:700;border-bottom:1px solid var(--border)">SECTION</th>
+              <th style="padding:.75rem 1rem;text-align:left;font-size:.68rem;letter-spacing:.9px;color:var(--muted);font-weight:700;border-bottom:1px solid var(--border)">EVENT NAME</th>
+              <th style="padding:.75rem 1rem;text-align:left;font-size:.68rem;letter-spacing:.9px;color:var(--muted);font-weight:700;border-bottom:1px solid var(--border)">PHONE</th>
+            </tr>
+          </thead>
+          <tbody id="reg-table-body">
+            <tr><td colspan="7" style="text-align:center;color:var(--muted);padding:2rem;font-size:.85rem">No registrations yet. Be the first to register!</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="flogo">Ashoka Women's Engineering College</div>
+    <p>Kurnool, Andhra Pradesh &nbsp;|&nbsp; Registration for Technical & Communication Events</p>
+    <div class="fcopy">© 2026 AWEC EventVerse · 💛</div>
+  </footer>
+</div>
+
+<!-- ════════════════════════════════
+     CERTIFICATES PAGE
+════════════════════════════════ -->
+<div class="page" id="page-certificate">
+  <div class="pghd" style="background:linear-gradient(180deg,rgba(201,168,76,.1) 0%,transparent 100%);border-bottom:1px solid rgba(201,168,76,.15)">
+    <div class="pghd-bg" style="background:radial-gradient(ellipse 70% 80% at 50% 0%,rgba(201,168,76,.16),transparent 65%)"></div>
+    <span class="pill-tag" style="background:rgba(201,168,76,.14);color:var(--gold2);border:1px solid rgba(201,168,76,.28)">🏆 CERTIFICATES</span>
+    <h1>Event <span style="background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent">Certificates</span></h1>
+    <p>Download your participation or winning certificate for any AWEC event</p>
+  </div>
+
+  <div class="reg-wrap" style="max-width:800px">
+
+    <!-- CERT TYPE SELECTION -->
+    <h2 style="font-family:var(--fh);font-size:1.7rem;font-weight:700;margin-bottom:.4rem">Select Certificate Type</h2>
+    <p style="color:var(--muted);font-size:.85rem;margin-bottom:1.4rem">Both participation and winning certificates are awarded. Choose the type below.</p>
+
+    <div class="cert-type-row">
+      <div class="ctype" id="ct-part" onclick="selCertType('participation')">
+        <div style="font-size:1.8rem">📜</div>
+        <h4>Participation Certificate</h4>
+        <p>For all students who attended and participated in the event</p>
+      </div>
+      <div class="ctype" id="ct-win" onclick="selCertType('winning')">
+        <div style="font-size:1.8rem">🏆</div>
+        <h4>Winning Certificate</h4>
+        <p>For students who won 1st, 2nd, or 3rd place in competitions</p>
+      </div>
+    </div>
+
+    <!-- CERT FORM -->
+    <div class="cert-form" id="cert-form">
+      <div class="r2">
+        <div class="fg"><label>YOUR NAME *</label><input id="ct-name" type="text" placeholder="Full name as registered"></div>
+        <div class="fg"><label>ROLL NUMBER *</label><input id="ct-roll" type="text" placeholder="e.g. 22A91A0501"></div>
+      </div>
+      <div class="r2">
+        <div class="fg">
+          <label>BRANCH *</label>
+          <select id="ct-branch">
+            <option value="">Select Branch</option>
+            <option>CSE</option><option>CSE-AI</option><option>ECE</option><option>EEE</option><option>Civil</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>EVENT CATEGORY *</label>
+          <select id="ct-cat" onchange="updateCertEvents()">
+            <option value="">Select Category</option>
+            <option value="cultural">Cultural</option>
+            <option value="technical">Technical</option>
+            <option value="communication">Communication</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg">
+        <label>EVENT NAME *</label>
+        <select id="ct-event"><option value="">Select event first</option></select>
+      </div>
+      <div class="fg" id="position-wrap" style="display:none">
+        <label>POSITION WON *</label>
+        <select id="ct-position">
+          <option value="">Select Position</option>
+          <option>🥇 1st Place</option>
+          <option>🥈 2nd Place</option>
+          <option>🥉 3rd Place</option>
+          <option>⭐ Special Award</option>
+        </select>
+      </div>
+      <button class="subbtn" onclick="generateCert()">🏆 Generate Certificate</button>
+    </div>
+
+    <!-- CERTIFICATE DISPLAY -->
+    <div id="cert-display" style="display:none">
+      <div class="cert-card" id="cert-preview">
+        <div class="cert-seal">🏛️</div>
+        <div style="font-size:.7rem;font-weight:700;letter-spacing:2px;color:var(--muted);margin-bottom:.5rem">ASHOKA WOMEN'S ENGINEERING COLLEGE · KURNOOL</div>
+        <div class="cert-line"></div>
+        <h3 id="cert-type-label">CERTIFICATE OF PARTICIPATION</h3>
+        <p style="font-size:.8rem;color:var(--muted);margin:.4rem 0 .8rem">This is to certify that</p>
+        <div class="cert-name" id="cert-student-name">Student Name</div>
+        <div style="font-size:.75rem;color:var(--muted)" id="cert-branch-roll">Branch · Roll No</div>
+        <div class="cert-body" id="cert-body-text">has successfully participated in</div>
+        <div class="cert-event" id="cert-event-name">Event Name</div>
+        <div id="cert-position-line" style="font-family:var(--fh);font-size:1.1rem;color:var(--gold2);margin:.3rem 0;display:none"></div>
+        <p style="font-size:.78rem;color:var(--muted)">organized by the Department of Student Affairs, AWEC</p>
+        <div class="cert-line"></div>
+        <div class="cert-footer">
+          <span>Date: <span id="cert-date"></span></span>
+          <span>🏛️ AWEC EventVerse</span>
+          <span>Cert ID: <span id="cert-id"></span></span>
+        </div>
+      </div>
+      <div style="display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:1.2rem">
+        <button class="btn btn-gold" onclick="window.print()">🖨️ Print Certificate</button>
+        <button class="btn btn-ghost" onclick="document.getElementById('cert-display').style.display='none';document.getElementById('cert-form').style.display='block'">← Generate Another</button>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="flogo">Ashoka Women's Engineering College</div>
+    <p>Kurnool, Andhra Pradesh &nbsp;|&nbsp; Certificates for Participation & Winning</p>
+    <div class="fcopy">© 2026 AWEC EventVerse · 💛</div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════
+     DATA + LOGIC
+══════════════════════════════════════════ -->
+<script>
+// ═══════ DATA ═══════
+const CULTURAL_EVENTS = [
+  {name:"Cultural Feast",date:"Jan 10, 2026",venue:"Main Auditorium",emoji:"🎪",desc:"Grand opening of the year with performances in dance, music, drama and art. Every student participates!"},
+  {name:"Sankaranthi Celebrations",date:"Jan 14, 2026",venue:"Open Ground",emoji:"🪁",desc:"Traditional Pongal and Sankaranthi festival with kolam competition, folk dance, kite flying and festive food."},
+  {name:"Convocation Ceremony",date:"Jan 20, 2026",venue:"Convention Hall",emoji:"🎓",desc:"A grand formal ceremony celebrating the graduating batch with academic regalia and distinguished guests."},
+  {name:"Holi Celebrations",date:"Mar 25, 2026",venue:"Open Ground",emoji:"🎨",desc:"Festival of colours with organic colours, music, dance and joy for all students across all branches."},
+  {name:"SAACHI – Cultural Extravaganza",date:"Mar 15, 2026",venue:"Main Auditorium",emoji:"🌟",desc:"AWEC's flagship annual cultural fest. 3 days of non-stop performances, competitions, celebrity appearances and fun."},
+  {name:"Iftar Party",date:"Mar 28, 2026",venue:"College Canteen",emoji:"🌙",desc:"A warm evening of fellowship, food and celebration. All students welcome to this inclusive cultural gathering."},
+  {name:"Farewell – Final Year",date:"May 5, 2026",venue:"Main Auditorium",emoji:"🥺",desc:"A heartfelt send-off for graduating seniors filled with performances, memories and emotional tributes."},
+  {name:"Independence Day",date:"Aug 15, 2026",venue:"College Ground",emoji:"🇮🇳",desc:"Patriotic programs, flag hoisting, march-past and cultural performances to celebrate National Day."},
+  {name:"Ganesh Festival",date:"Aug 26, 2026",venue:"Campus Temple",emoji:"🐘",desc:"Ganesh Chaturthi celebrations with beautiful idol installations, bhajans, aarti and prasad for all."},
+  {name:"Dandiya Night",date:"Sep 30, 2026",venue:"Open Air Theatre",emoji:"🪔",desc:"Navratri special evening — dance the night away with dandiya sticks and garba. Prizes for best dressed!"},
+  {name:"Dussehra Program",date:"Oct 2, 2026",venue:"Main Auditorium",emoji:"🎭",desc:"Drama, dance and music celebrating the victory of good over evil. Traditional Ramlila performance."},
+  {name:"Diwali Dhamaka",date:"Nov 1, 2026",venue:"Open Ground",emoji:"✨",desc:"Diwali decorations, rangoli competition, traditional games, sweets distribution and sparkle photo booths."},
+  {name:"Christmas Celebration",date:"Dec 25, 2026",venue:"Main Auditorium",emoji:"🎄",desc:"Secret Santa gift exchange, carol singing, Christmas-themed cultural evening with prizes and goodies."},
+  {name:"New Year Eve Bash",date:"Dec 31, 2026",venue:"Open Air Theatre",emoji:"🎆",desc:"Ring in the New Year together! DJ night, performances and a midnight countdown celebration."},
+];
+
+const TECHNICAL_EVENTS = [
+  {name:"Project Expo",date:"Jan 28, 2026",venue:"Lab Complex",emoji:"💡",desc:"Showcase final-year and mini-projects to a jury of industry professionals. Best projects win cash prizes."},
+  {name:"Web Design Contest",date:"Feb 25, 2026",venue:"Computer Lab",emoji:"🌐",desc:"Design the best website UI/UX in a 4-hour live competition. Individual and team categories available."},
+  {name:"E-Cube Hackathon",date:"Mar 1–6, 2026",venue:"Innovation Hub",emoji:"⚡",desc:"6-day intense hackathon. Build solutions for real-world problems. Prize pool ₹50,000. Teams of 2–4."},
+  {name:"Aavishkar Science Expo",date:"Mar 10, 2026",venue:"Exhibition Hall",emoji:"🔬",desc:"Present your scientific models and inventions. Working prototype preferred. Open to all departments."},
+  {name:"NEXORA Tech Symposium",date:"Mar 12, 2026",venue:"Conference Hall",emoji:"🚀",desc:"Inter-college technical symposium with paper presentations, technical quizzes and coding rounds."},
+  {name:"CodeSprint 2026",date:"Apr 5, 2026",venue:"Computer Lab",emoji:"⌨",desc:"Competitive programming contest. Solve algorithmic problems under time pressure. LeetCode-style format."},
+  {name:"Poster Presentation",date:"Apr 22, 2026",venue:"Exhibition Hall",emoji:"📊",desc:"Present your research topic as a designed poster. Judged on content, design and presentation clarity."},
+  {name:"Data Analytics Workshop",date:"May 15, 2026",venue:"Computer Lab",emoji:"📈",desc:"Hands-on workshop with Python, Pandas, Matplotlib and Seaborn. Build real data visualizations."},
+  {name:"Full-Stack Dev Workshop",date:"Jun 10, 2026",venue:"Computer Lab",emoji:"🖥",desc:"7-day intensive workshop: HTML, CSS, JavaScript, React, Node.js and MongoDB. Certificate awarded."},
+  {name:"Cyber Security Day",date:"Jul 5, 2026",venue:"Seminar Hall",emoji:"🔐",desc:"Sessions on ethical hacking, digital safety, privacy and cybercrime awareness. Demo CTF challenges."},
+  {name:"App Development Contest",date:"Aug 20, 2026",venue:"Innovation Lab",emoji:"📱",desc:"Build a functional mobile app in one day. Android or iOS. Best app wins internship opportunities."},
+  {name:"AI & ML Workshop",date:"Sep 12, 2026",venue:"Computer Lab",emoji:"🤖",desc:"Introduction to machine learning with scikit-learn, TensorFlow basics and hands-on Python projects."},
+  {name:"Tech Talk – Industry Connect",date:"Oct 10, 2026",venue:"Conference Hall",emoji:"🏛",desc:"Leaders from top tech companies share career journeys, industry trends and hiring insights."},
+  {name:"National Tech Symposium",date:"Nov 14, 2026",venue:"Convention Hall",emoji:"🔭",desc:"Inter-college paper presentations and project competitions. Register with abstract by Oct 30."},
+  {name:"Blockchain & Web3",date:"Dec 10, 2026",venue:"Computer Lab",emoji:"🔗",desc:"Explore decentralised technology. Build your first smart contract. Certificate for all participants."},
+];
+
+const COMM_EVENTS = [
+  {name:"Public Speaking Bootcamp",date:"Jan 25, 2026",venue:"Seminar Hall A",emoji:"🎙",desc:"Build oratory confidence with certified communication coaches. 2-day intensive training program."},
+  {name:"Debate Club Workshop",date:"Feb 18, 2026",venue:"Seminar Room 2",emoji:"🗣",desc:"Inter-branch debate on current engineering and social topics. Individual and team debate formats."},
+  {name:"Group Discussion Workshop",date:"Mar 20, 2026",venue:"Seminar Hall A",emoji:"💬",desc:"Master GD techniques for campus placements. Practice sessions with HR professionals as judges."},
+  {name:"Email & Business Writing",date:"Apr 15, 2026",venue:"Seminar Hall B",emoji:"📧",desc:"Professional email etiquette, report writing and corporate communication masterclass."},
+  {name:"Interview Skills Training",date:"May 20, 2026",venue:"Seminar Hall A",emoji:"🤝",desc:"Mock interviews with HR panels. Body language, salary negotiation and placement tips from alumni."},
+  {name:"Storytelling Masterclass",date:"Jun 20, 2026",venue:"Seminar Hall B",emoji:"📖",desc:"Craft compelling stories that captivate any audience. Useful for presentations, interviews and leadership."},
+  {name:"Mock Press Conference",date:"Jul 18, 2026",venue:"Conference Room",emoji:"📰",desc:"Simulate media communication in a realistic press conference. Practice fielding tough questions."},
+  {name:"Vocabulary Power Session",date:"Aug 10, 2026",venue:"Seminar Hall B",emoji:"📚",desc:"Expand vocabulary and language fluency for GRE, IELTS, TOEFL and campus placement tests."},
+  {name:"Body Language & Confidence",date:"Sep 20, 2026",venue:"Seminar Hall A",emoji:"🧘",desc:"Non-verbal communication skills — posture, eye contact, hand gestures and first impressions."},
+  {name:"Creative Writing Workshop",date:"Oct 20, 2026",venue:"Library",emoji:"✍",desc:"Express ideas through poetry, essays, short stories and opinion writing. Best entries published."},
+  {name:"Leadership & Teamwork",date:"Nov 22, 2026",venue:"Seminar Hall A",emoji:"👑",desc:"Team-based activities and leadership workshops. Project management and conflict resolution skills."},
+  {name:"Year-End Communication Gala",date:"Dec 20, 2026",venue:"Seminar Hall B",emoji:"🌠",desc:"Celebrating the best communicators of 2026. Award ceremony for top performers across all events."},
+];
+
+const GALLERY_DATA = [
+  {emoji:"🌟",title:"SAACHI 2025 – Day 1 Inauguration",year:"2025",bg:"linear-gradient(135deg,#7c0d40,#c2185b)"},
+  {emoji:"🎤",title:"SAACHI 2025 – Cultural Performances",year:"2025",bg:"linear-gradient(135deg,#880e4f,#e91e8c)"},
+  {emoji:"🪁",title:"Sankaranthi 2025 – Kolam Competition",year:"2025",bg:"linear-gradient(135deg,#7b3f00,#c2185b)"},
+  {emoji:"🎓",title:"Convocation Ceremony 2025",year:"2025",bg:"linear-gradient(135deg,#1a237e,#283593)"},
+  {emoji:"🐘",title:"Ganesh Festival 2025",year:"2025",bg:"linear-gradient(135deg,#4a148c,#7b1fa2)"},
+  {emoji:"🎄",title:"Christmas Celebration 2024",year:"2024",bg:"linear-gradient(135deg,#1b5e20,#2e7d32)"},
+  {emoji:"🪔",title:"Dandiya Night 2025",year:"2025",bg:"linear-gradient(135deg,#b71c1c,#c2185b)"},
+  {emoji:"✨",title:"Diwali Dhamaka 2025",year:"2025",bg:"linear-gradient(135deg,#f57f17,#c2185b)"},
+  {emoji:"🇮🇳",title:"Independence Day 2025",year:"2025",bg:"linear-gradient(135deg,#1b5e20,#0d47a1)"},
+  {emoji:"🎨",title:"Holi Celebrations 2025",year:"2025",bg:"linear-gradient(135deg,#880e4f,#1a237e)"},
+  {emoji:"🎭",title:"Dussehra Program 2025",year:"2025",bg:"linear-gradient(135deg,#7b3f00,#4a148c)"},
+  {emoji:"🥺",title:"Farewell 2025 – Final Year",year:"2025",bg:"linear-gradient(135deg,#37474f,#546e7a)"},
+];
+
+const GUESTS = [
+  {emoji:"👩‍💼",name:"Dr. S. Lakshmi",title:"IAS Officer, AP Govt","bg":"#c2185b"},
+  {emoji:"👩‍🔬",name:"Dr. Priya Reddy",title:"Scientist, DRDO","bg":"#7b1fa2"},
+  {emoji:"👩‍💻",name:"Ms. Anita Sharma",title:"VP Engineering, TCS","bg":"#0d47a1"},
+  {emoji:"👩‍🎤",name:"Ms. Kavitha Nair",title:"Playback Singer","bg":"#bf360c"},
+  {emoji:"🧑‍🏫",name:"Prof. R. Vijaya",title:"Dean, JNTUA","bg":"#1b5e20"},
+  {emoji:"👩‍⚕️",name:"Dr. Meena Gopal",title:"Surgeon, AIIMS Mangalagiri","bg":"#880e4f"},
+  {emoji:"👩‍🏭",name:"Ms. Durga Rao",title:"CEO, TechSpark Kurnool","bg":"#006064"},
+  {emoji:"🧑‍💼",name:"Mr. Ravi Kumar",title:"District Collector, Kurnool","bg":"#4e342e"},
+];
+
+// ═══════ STATE ═══════
+let regs = [];
+let certType = '';
+
+// ═══════ ROUTER ═══════
+function go(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('show'));
+  document.getElementById('page-' + id).classList.add('show');
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('on'));
+  const nl = document.getElementById('nl-' + id);
+  if (nl) nl.classList.add('on');
+  window.scrollTo(0, 0);
+  if (id === 'cultural') renderCultural();
+  if (id === 'technical') renderTechnical();
+  if (id === 'communication') renderComm();
+}
+function closeMob() { document.getElementById('mob').classList.remove('open'); }
+
+// ═══════ RENDER CULTURAL ═══════
+function renderCultural() {
+  // Events
+  document.getElementById('cult-events').innerHTML = CULTURAL_EVENTS.map(e => `
+    <div class="ecard" style="border-color:rgba(194,24,91,.18)">
+      <div class="ecard-banner" style="background:linear-gradient(135deg,#6d0026,#c2185b)">${e.emoji}</div>
+      <div class="ecard-body">
+        <span class="etag c-tag">CULTURAL · FREE ENTRY</span>
+        <h3>${e.name}</h3>
+        <div class="emeta">
+          <span>📅 ${e.date}</span>
+          <span>📍 ${e.venue}</span>
+        </div>
+        <p class="edesc">${e.desc}</p>
+        <div style="background:rgba(194,24,91,.1);border:1px solid rgba(194,24,91,.2);border-radius:8px;padding:.55rem .85rem;font-size:.74rem;color:#f48fb1;font-weight:600">
+          🎭 Open Entry — No Registration Required
+        </div>
+      </div>
+    </div>`).join('');
+
+  // Gallery
+  document.getElementById('cult-gallery').innerHTML = GALLERY_DATA.map(g => `
+    <div class="gi" style="background:${g.bg}">
+      <span>${g.emoji}</span>
+      <div class="gov"><h4>${g.title}</h4><p>${g.year}</p></div>
+    </div>`).join('');
+
+  // Guests
+  document.getElementById('cult-guests').innerHTML = GUESTS.map(g => `
+    <div class="gcard">
+      <div class="gcard-av" style="background:${g.bg}">${g.emoji}</div>
+      <h4>${g.name}</h4>
+      <p>${g.title}</p>
+    </div>`).join('');
+}
+
+// ═══════ RENDER TECHNICAL ═══════
+function renderTechnical() {
+  document.getElementById('tech-events').innerHTML = TECHNICAL_EVENTS.map(e => `
+    <div class="ecard" style="border-color:rgba(0,137,123,.18)">
+      <div class="ecard-banner" style="background:linear-gradient(135deg,#004d40,#00897b)">${e.emoji}</div>
+      <div class="ecard-body">
+        <span class="etag t-tag">TECHNICAL</span>
+        <h3>${e.name}</h3>
+        <div class="emeta">
+          <span>📅 ${e.date}</span>
+          <span>📍 ${e.venue}</span>
+        </div>
+        <p class="edesc">${e.desc}</p>
+        <button class="regbtn" style="background:linear-gradient(135deg,#00695c,#00897b)" onclick="goRegEv('${e.name.replace(/'/g,"\\'")}','technical')">📝 Register for this Event</button>
+      </div>
+    </div>`).join('');
+}
+
+// ═══════ RENDER COMMUNICATION ═══════
+function renderComm() {
+  document.getElementById('comm-events').innerHTML = COMM_EVENTS.map(e => `
+    <div class="ecard" style="border-color:rgba(21,101,192,.18)">
+      <div class="ecard-banner" style="background:linear-gradient(135deg,#0d2b6e,#1565c0)">${e.emoji}</div>
+      <div class="ecard-body">
+        <span class="etag s-tag">COMMUNICATION</span>
+        <h3>${e.name}</h3>
+        <div class="emeta">
+          <span>📅 ${e.date}</span>
+          <span>📍 ${e.venue}</span>
+        </div>
+        <p class="edesc">${e.desc}</p>
+        <button class="regbtn" style="background:linear-gradient(135deg,#0d3b7e,#1565c0)" onclick="goRegEv('${e.name.replace(/'/g,"\\'")}','communication')">📝 Register for this Event</button>
+      </div>
+    </div>`).join('');
+}
+
+function goRegEv(name, type) {
+  go('register');
+  setTimeout(() => {
+    document.getElementById('rg-etype').value = type;
+    updateEventList();
+    setTimeout(() => {
+      document.getElementById('rg-event').value = name;
+    }, 50);
+  }, 100);
+}
+
+// ═══════ REGISTRATION ═══════
+function updateEventList() {
+  const type = document.getElementById('rg-etype').value;
+  const wrap = document.getElementById('ev-select-wrap');
+  const sel = document.getElementById('rg-event');
+  if (!type) { wrap.style.display = 'none'; return; }
+  wrap.style.display = 'block';
+  const events = type === 'technical' ? TECHNICAL_EVENTS : COMM_EVENTS;
+  sel.innerHTML = '<option value="">Select Event</option>' + events.map(e => `<option value="${e.name}">${e.name}</option>`).join('');
+}
+
+function submitReg() {
+  const name   = document.getElementById('rg-name').value.trim();
+  const roll   = document.getElementById('rg-roll').value.trim();
+  const branch = document.getElementById('rg-branch').value;
+  const section= document.getElementById('rg-section').value;
+  const year   = document.getElementById('rg-year').value;
+  const phone  = document.getElementById('rg-phone').value.trim();
+  const email  = document.getElementById('rg-email').value.trim();
+  const etype  = document.getElementById('rg-etype').value;
+  const event  = document.getElementById('rg-event').value;
+
+  if (!name || !roll || !branch || !section || !year || !phone || !email || !etype || !event) {
+    alert('Please fill in all required fields before submitting.'); return;
+  }
+
+  const reg = { name, roll, branch, section, year, phone, email, event, etype, time: new Date().toLocaleString() };
+  regs.push(reg);
+
+  // Show pass
+  document.getElementById('reg-form-card').style.display = 'none';
+  document.getElementById('reg-success').style.display = 'block';
+  document.getElementById('pass-info').innerHTML =
+    `Name: ${name}<br>Roll No: ${roll.toUpperCase()}<br>Branch: ${branch} - Sec ${section}<br>Year: ${year}<br>Event: ${event}<br>Date: ${new Date().toLocaleDateString('en-IN')}`;
+
+  // Update table
+  renderRegTable();
+}
+
+function renderRegTable() {
+  const tb = document.getElementById('reg-table-body');
+  if (!regs.length) {
+    tb.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--muted);padding:2rem;font-size:.85rem">No registrations yet.</td></tr>';
+    return;
+  }
+  tb.innerHTML = regs.map((r, i) => `
+    <tr style="border-bottom:1px solid rgba(201,168,76,.08)">
+      <td style="padding:.72rem 1rem;font-family:var(--fm);font-size:.75rem;color:var(--muted)">${i + 1}</td>
+      <td style="padding:.72rem 1rem;font-size:.82rem;font-weight:600">${r.name}</td>
+      <td style="padding:.72rem 1rem;font-family:var(--fm);font-size:.77rem">${r.roll.toUpperCase()}</td>
+      <td style="padding:.72rem 1rem;font-size:.8rem">${r.branch}</td>
+      <td style="padding:.72rem 1rem;font-size:.8rem;text-align:center">${r.section}</td>
+      <td style="padding:.72rem 1rem;font-size:.8rem">${r.event}</td>
+      <td style="padding:.72rem 1rem;font-family:var(--fm);font-size:.77rem">${r.phone}</td>
+    </tr>`).join('');
+}
+
+function resetReg() {
+  document.getElementById('reg-form-card').style.display = 'block';
+  document.getElementById('reg-success').style.display = 'none';
+  ['rg-name','rg-roll','rg-phone','rg-email'].forEach(id => document.getElementById(id).value = '');
+  ['rg-branch','rg-section','rg-year','rg-etype','rg-event'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('ev-select-wrap').style.display = 'none';
+}
+
+// ═══════ CERTIFICATES ═══════
+function selCertType(type) {
+  certType = type;
+  document.getElementById('ct-part').classList.toggle('sel', type === 'participation');
+  document.getElementById('ct-win').classList.toggle('sel', type === 'winning');
+  document.getElementById('position-wrap').style.display = type === 'winning' ? 'block' : 'none';
+}
+
+function updateCertEvents() {
+  const cat = document.getElementById('ct-cat').value;
+  const sel = document.getElementById('ct-event');
+  const evs = cat === 'cultural' ? CULTURAL_EVENTS : cat === 'technical' ? TECHNICAL_EVENTS : COMM_EVENTS;
+  sel.innerHTML = '<option value="">Select Event</option>' + evs.map(e => `<option value="${e.name}">${e.name}</option>`).join('');
+}
+
+function generateCert() {
+  const name   = document.getElementById('ct-name').value.trim();
+  const roll   = document.getElementById('ct-roll').value.trim();
+  const branch = document.getElementById('ct-branch').value;
+  const event  = document.getElementById('ct-event').value;
+  const pos    = certType === 'winning' ? document.getElementById('ct-position').value : '';
+
+  if (!name || !roll || !branch || !event || !certType) {
+    alert('Please fill all fields and select a certificate type.'); return;
+  }
+  if (certType === 'winning' && !pos) {
+    alert('Please select the position you won.'); return;
+  }
+
+  document.getElementById('cert-type-label').textContent =
+    certType === 'winning' ? 'CERTIFICATE OF EXCELLENCE' : 'CERTIFICATE OF PARTICIPATION';
+  document.getElementById('cert-student-name').textContent = name;
+  document.getElementById('cert-branch-roll').textContent = `${branch} · ${roll.toUpperCase()}`;
+  document.getElementById('cert-body-text').textContent =
+    certType === 'winning' ? 'has achieved distinction in' : 'has successfully participated in';
+  document.getElementById('cert-event-name').textContent = event;
+
+  const posLine = document.getElementById('cert-position-line');
+  if (certType === 'winning' && pos) {
+    posLine.style.display = 'block';
+    posLine.textContent = `Awarded: ${pos}`;
+  } else {
+    posLine.style.display = 'none';
+  }
+
+  document.getElementById('cert-date').textContent = new Date().toLocaleDateString('en-IN', {day:'2-digit', month:'long', year:'numeric'});
+  document.getElementById('cert-id').textContent = 'AWEC-' + Math.random().toString(36).substring(2,8).toUpperCase();
+
+  document.getElementById('cert-form').style.display = 'none';
+  document.getElementById('cert-display').style.display = 'block';
+}
+
+// ═══════ COUNTDOWN ═══════
+function tick() {
+  const diff = new Date('2027-03-15T09:00:00') - new Date();
+  if (diff <= 0) return;
+  const pad = n => String(Math.floor(n)).padStart(2, '0');
+  document.getElementById('cd-d').textContent = pad(diff / 86400000);
+  document.getElementById('cd-h').textContent = pad(diff % 86400000 / 3600000);
+  document.getElementById('cd-m').textContent = pad(diff % 3600000 / 60000);
+  document.getElementById('cd-s').textContent = pad(diff % 60000 / 1000);
+}
+
+// ═══════ INIT ═══════
+tick(); setInterval(tick, 1000);
+</script>
+</body>
+</html>
